@@ -1,5 +1,5 @@
 import streamlit as st
-st.title("ELI5")
+st.title("ELI-X")
 pages = {
     "Pages": [
         st.Page("app.py",title='App'),

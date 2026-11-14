@@ -55,14 +55,64 @@ class AIModel():
             "Why do spiders build webs?",
             "What is a robot?",
             "How do we smell things?",
-            "Why is ice slippery?"
+            "Why is ice slippery?",
+            "How do solar panels work?",
+            "Why do we have different blood types?",
+            "What makes a comet's tail?",
+            "How do vaccines work?",
+            "Why is salt used to melt ice?",
+            "How does Wi-Fi travel through walls?",
+            "What happens when you fall asleep?",
+            "Why do we have dreams?",
+            "How does a bicycle stay balanced?",
+            "What is Artificial Intelligence?",
+            "How do bubbles get their shape?",
+            "Why do we have different hair colors?",
+            "How do airplanes stay in the air?",
+            "Why is the desert so hot?",
+            "How do penguins stay warm in the cold?",
+            "How do muscles work?",
+            "Why do we have different eye colors?",
+            "What is a solar eclipse?",
+            "How do ships float?",
+            "Why do we get headaches?",
+            "How do leaves make food?",
+            "How do we get energy from food?",
+            "Why do we need to drink water?",
+            "How do plants know when to grow?",
+            "How do animals hibernate?",
+            "What are coral reefs?",
+            "Why is the sky dark at night?",
+            "How do birds find their way when migrating?",
+            "What is a nebula?",
+            "How do our bones grow?",
+            "How does the internet travel under the sea?",
+            "Why do we have time zones?",
+            "How do touchscreens work?",
+            "Why do we have leap years?",
+            "How do fiber optic cables work?",
+            "What is a glacier?",
+            "How do crystals form?",
+            "What makes a lightning strike?",
+            "How do echoes happen?",
+            "Why do we have taste buds?",
+            "How do bees communicate?",
+            "What is a supernova?",
+            "How do rainbows get their colors?",
+            "What is climate change?",
+            "Why do cats purr?",
+            "How do plants turn sunlight into energy?",
+            "Why do we have eyebrows?",
+            "How do satellites stay in orbit?",
+            "How do we see color?",
+            "What is photosynthesis?"
         ]
-    def getResponse(self,prompt):
-        response = self.client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents="Explain the following inquiry like I'm 5 years old. " + prompt,
+    def getResponseStream(self,prompt,level):
+        response = self.client.models.generate_content_stream(
+            model="gemini-3.1-flash-lite",
+            contents=f'Explain the following inquiry like I am a {level} student. ' + prompt,
         )
-        print("Explain the following inquiry like I'm 5 years old. " + prompt)
-        return response.text
+        for chunk in response:
+            yield chunk.text
     def randomPrompt(self):
         return self.examplePrompts[random.randint(0,len(self.examplePrompts)-1)]
